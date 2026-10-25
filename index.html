@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazwa Ananda | Space Tech</title>
+<meta name="description" content="Personal space tech portfolio — Nazwa Ananda, XII TKJ A, UKOM 25.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #070510;
+  --panel: #100b20;
+  --purple: #a855f7;
+  --violet: #7c3aed;
+  --green: #b7ff65;
+  --white: #f4efff;
+  --muted: #aaa0c5;
+  --line: rgba(168,85,247,.28);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+::selection { background: var(--purple); color: white; }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 75% 15%, #35105a66, transparent 35%),
+    radial-gradient(ellipse at 10% 70%, #28105a44, transparent 35%),
+    #070510;
+}
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%,100% { opacity: .2; transform: scale(.8); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-16px) rotate(3deg); }
+}
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 10px #a855f744; }
+  50% { box-shadow: 0 0 26px #a855f799; }
+}
+
+.container { width: min(1120px, 90%); margin: auto; }
+.section { padding: 95px 0; position: relative; }
+.section-head { margin-bottom: 35px; }
+.eyebrow {
+  font: 600 11px 'Orbitron', sans-serif;
+  color: var(--green);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.section-title {
+  font: 700 clamp(25px, 4vw, 38px) 'Orbitron', sans-serif;
+  margin-top: 12px;
+}
+.section-title span { color: var(--purple); }
+.section-desc { color: var(--muted); margin-top: 12px; line-height: 1.8; max-width: 620px; font-size: 14px; }
+.line { height: 1px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
+
+/* NAVIGATION */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #090614dc;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font: 700 13px 'Orbitron', sans-serif; letter-spacing: 1px; }
+.brand-icon {
+  width: 34px; height: 34px; display: grid; place-items: center;
+  border: 1px solid var(--purple); border-radius: 11px;
+  color: var(--green); background: #a855f71c;
+  box-shadow: 0 0 20px #a855f722;
+}
+.nav-links { display: flex; gap: 25px; align-items: center; }
+.nav-links a { font-size: 12px; color: var(--muted); transition: .2s; }
+.nav-links a:hover { color: var(--green); }
+.nav-button {
+  border: 1px solid var(--green); border-radius: 30px;
+  color: var(--green); padding: 10px 14px; background: transparent;
+  font-size: 11px;
+}
+.menu-toggle { display: none; color: white; background: none; border: 0; font-size: 24px; }
+
+/* HERO */
+.hero { min-height: 660px; display: flex; align-items: center; overflow: hidden; }
+.hero-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: 20px; align-items: center; padding: 65px 0;
+}
+.status {
+  display: inline-flex; gap: 9px; align-items: center;
+  border: 1px solid var(--line); border-radius: 30px;
+  padding: 9px 13px; font-size: 10px; color: var(--muted);
+  background: #100b20aa; margin-bottom: 25px;
+}
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+.hero h1 {
+  font: 700 clamp(40px, 6vw, 72px)/1.12 'Orbitron', sans-serif;
+  letter-spacing: -3px;
+}
+.hero h1 span {
+  display: block;
+  background: linear-gradient(100deg, #fff, #c084fc 60%, #8b5cf6);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-copy { color: var(--muted); line-height: 1.9; font-size: 14px; max-width: 490px; margin: 24px 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  padding: 13px 19px; border-radius: 30px; font-size: 12px; font-weight: 600;
+  border: 1px solid var(--line); display: inline-flex; align-items: center; gap: 10px;
+  transition: transform .25s, box-shadow .25s;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px #a855f733; }
+.btn-primary { background: linear-gradient(110deg, #7c3aed, #a855f7); color: white; border: none; }
+.btn-outline { background: #100b20; color: var(--white); }
+.hero-meta { display: flex; gap: 24px; margin-top: 36px; }
+.meta-item { border-left: 2px solid var(--purple); padding-left: 12px; }
+.meta-item strong { display: block; font: 600 12px 'Orbitron', sans-serif; }
+.meta-item small { color: var(--muted); font-size: 10px; display: block; margin-top: 5px; }
+
+/* CSS SPACE SCENE */
+.space-scene {
+  min-height: 420px; position: relative; display: grid; place-items: center;
+  isolation: isolate;
+}
+.planet {
+  width: clamp(210px, 29vw, 330px); aspect-ratio: 1;
+  position: relative; border-radius: 50%;
+  background:
+    radial-gradient(circle at 28% 24%, #dfc4ff, transparent 13%),
+    radial-gradient(ellipse at 35% 35%, #8e5bd5 0%, #51249c 34%, #201044 65%, #080615 78%);
+  box-shadow: inset -35px -20px 60px #02010c, 0 0 55px #8835ff3b;
+  animation: float 7s ease-in-out infinite;
+}
+.planet::before {
+  content: ""; position: absolute; inset: 22% -22%;
+  border: 8px solid #cba6ff99; border-left-color: #a855f744;
+  border-right-color: #e9d5ff; border-radius: 50%;
+  transform: rotate(-20deg); box-shadow: 0 0 20px #a855f744;
+}
+.planet::after {
+  content: ""; position: absolute; inset: 37% -24%;
+  border: 2px solid #d8b4fe66; border-radius: 50%; transform: rotate(-20deg);
+}
+.moon {
+  position: absolute; width: 68px; height: 68px; top: 35px; right: 25px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #e9d5ff, #8465b8 42%, #25133d 80%);
+  box-shadow: 0 0 30px #a855f766;
+}
+.orbit {
+  position: absolute; width: 390px; height: 390px;
+  border: 1px solid #a855f733; border-radius: 50%;
+  animation: orbit 30s linear infinite;
+}
+.orbit::before {
+  content: "✦"; color: var(--green); position: absolute;
+  top: 40px; left: 30px; font-size: 22px;
+  text-shadow: 0 0 15px var(--green);
+}
+.scene-label {
+  position: absolute; bottom: 10px; right: 0;
+  background: #0c0819dc; border: 1px solid var(--line);
+  padding: 15px 18px; border-radius: 12px; font-size: 11px;
+  backdrop-filter: blur(10px);
+}
+.scene-label strong { color: var(--green); display: block; margin-bottom: 6px; font-family: 'Orbitron', sans-serif; }
+.floating-code {
+  position: absolute; top: 40px; left: 0; padding: 12px 15px;
+  border: 1px solid var(--line); background: #0c0819d9;
+  border-radius: 10px; color: #d8b4fe; font: 11px/1.8 monospace;
+  animation: float 5s ease-in-out infinite;
+}
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; align-items: center; }
+.about-copy { font-size: 14px; line-height: 2; color: var(--muted); }
+.profile-card {
+  padding: 25px; border: 1px solid var(--line); border-radius: 18px;
+  background: linear-gradient(135deg, #17102a, #0b0817);
+  position: relative; overflow: hidden;
+}
+.profile-card::after {
+  content: ""; position: absolute; width: 150px; height: 150px;
+  background: #9333ea22; filter: blur(35px); right: -40px; bottom: -50px;
+}
+.profile-top { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.avatar {
+  width: 62px; height: 62px; border-radius: 17px; display: grid; place-items: center;
+  font-size: 28px; background: linear-gradient(135deg, #4c1d95, #17102a);
+  border: 1px solid var(--purple);
+}
+.profile-top h3 { font: 600 14px 'Orbitron', sans-serif; }
+.profile-top p { color: var(--muted); font-size: 11px; margin-top: 7px; }
+.profile-list { display: grid; gap: 15px; font-size: 12px; color: var(--muted); }
+.profile-list span { color: var(--green); margin-right: 10px; }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.skill-card {
+  padding: 23px; min-height: 195px; border-radius: 15px;
+  background: linear-gradient(145deg, #130d24, #0b0815);
+  border: 1px solid var(--line); transition: .25s;
+}
+.skill-card:hover { transform: translateY(-5px); border-color: var(--purple); background: #17102a; }
+.skill-icon {
+  width: 43px; height: 43px; display: grid; place-items: center;
+  border: 1px solid var(--line); background: #a855f71a; border-radius: 12px;
+  font-size: 21px; margin-bottom: 19px;
+}
+.skill-card h3 { font: 600 13px 'Orbitron', sans-serif; margin-bottom: 10px; }
+.skill-card p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.tag { display: inline-block; margin-top: 14px; color: var(--green); font-size: 10px; }
+
+/* LEARNING LOG */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ""; position: absolute; left: 6px; top: 7px; bottom: 5px; width: 1px; background: linear-gradient(var(--purple), #b7ff6544); }
+.timeline-item { position: relative; padding: 0 0 30px 18px; }
+.timeline-item::before {
+  content: ""; position: absolute; width: 11px; height: 11px; left: -27px; top: 4px;
+  border-radius: 50%; background: var(--green); box-shadow: 0 0 13px #b7ff6588;
+}
+.timeline-item h3 { font: 600 13px 'Orbitron', sans-serif; margin-bottom: 9px; }
+.timeline-item p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.timeline-item small { color: var(--purple); font-size: 10px; display: block; margin-bottom: 8px; }
+
+/* TERMINAL */
+.terminal-wrap { display: grid; grid-template-columns: 1.25fr .75fr; gap: 18px; }
+.terminal {
+  background: #050409; border: 1px solid #513080; border-radius: 14px;
+  overflow: hidden; box-shadow: 0 0 35px #7c3aed16;
+}
+.terminal-bar { padding: 13px 15px; background: #161020; border-bottom: 1px solid var(--line); display: flex; gap: 6px; align-items: center; }
+.terminal-bar i { width: 8px; height: 8px; border-radius: 50%; background: #a855f7; }
+.terminal-bar span { font-size: 10px; color: var(--muted); margin-left: 8px; }
+.terminal-body { padding: 20px; font: 12px/2 monospace; min-height: 210px; color: #d5c6ed; overflow-wrap: anywhere; }
+.terminal-body .green { color: var(--green); }
+.terminal-body .purple { color: #c084fc; }
+.terminal-input { display: flex; gap: 8px; margin-top: 12px; }
+.terminal-input input {
+  width: 100%; min-width: 0; color: white; background: #110b1d;
+  border: 1px solid var(--line); padding: 11px; border-radius: 8px; outline: none;
+}
+.terminal-input button { background: var(--green); color: #171020; border: 0; padding: 0 16px; border-radius: 8px; font-weight: 700; }
+.terminal-note {
+  padding: 25px; border: 1px solid var(--line); border-radius: 14px;
+  background: radial-gradient(circle at top right, #54218a55, transparent 60%), #100b20;
+}
+.terminal-note h3 { font: 600 15px 'Orbitron', sans-serif; color: var(--green); margin-bottom: 15px; }
+.terminal-note p { font-size: 12px; line-height: 1.9; color: var(--muted); }
+.command-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+.command-list button { color: #d8b4fe; background: #a855f715; border: 1px solid var(--line); border-radius: 20px; padding: 7px 10px; font: 10px monospace; }
+
+/* GALLERY */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.gallery-card {
+  min-height: 190px; position: relative; border-radius: 15px; overflow: hidden;
+  border: 1px solid var(--line); background: #110b20;
+  display: flex; align-items: end; padding: 20px;
+}
+.gallery-card:nth-child(1) { background: radial-gradient(circle at 75% 20%, #8546c7, transparent 40%), linear-gradient(145deg,#21113c,#090611); }
+.gallery-card:nth-child(2) { background: radial-gradient(circle at 75% 25%, #3d8b8b, transparent 35%), linear-gradient(145deg,#171a32,#080712); }
+.gallery-card:nth-child(3) { background: radial-gradient(circle at 70% 30%, #7251d1, transparent 40%), linear-gradient(145deg,#251046,#090611); }
+.gallery-card:nth-child(4) { background: radial-gradient(circle at 75% 25%, #6b4397, transparent 40%), linear-gradient(145deg,#21152e,#080611); }
+.gallery-card:nth-child(5) { background: radial-gradient(circle at 75% 25%, #435a92, transparent 40%), linear-gradient(145deg,#101c37,#080611); }
+.gallery-card:nth-child(6) { background: radial-gradient(circle at 75% 25%, #8e4bbd, transparent 40%), linear-gradient(145deg,#25103e,#080611); }
+.gallery-symbol { position: absolute; top: 20px; right: 20px; font-size: 48px; opacity: .85; filter: drop-shadow(0 0 15px #c084fc); }
+.gallery-card h3 { font: 600 12px 'Orbitron', sans-serif; margin-bottom: 7px; }
+.gallery-card p { color: var(--muted); font-size: 11px; }
+
+/* CONTACT */
+.contact-panel {
+  border: 1px solid var(--line); border-radius: 20px; padding: clamp(25px, 5vw, 50px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;
+  background: radial-gradient(ellipse at 90% 10%, #6d28d933, transparent 40%), #0d091a;
+}
+.contact-panel h2 { font: 700 clamp(23px, 4vw, 36px) 'Orbitron', sans-serif; margin: 12px 0; }
+.contact-panel p { color: var(--muted); font-size: 13px; line-height: 1.9; }
+.contact-links { display: grid; gap: 12px; }
+.contact-link { padding: 15px; border: 1px solid var(--line); border-radius: 11px; font-size: 12px; transition: .2s; }
+.contact-link:hover { border-color: var(--green); }
+.contact-link span { display: block; color: var(--muted); font-size: 10px; margin-top: 5px; }
+
+/* FOOTER */
+footer { padding: 25px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+.footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+.footer-inner strong { color: var(--white); font-family: 'Orbitron', sans-serif; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 760px) {
+  .nav-inner { min-height: 65px; }
+  .menu-toggle { display: block; }
+  .nav-button { display: none; }
+  .nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    padding: 22px 5%; background: #090614f7; border-bottom: 1px solid var(--line);
+    flex-direction: column; align-items: start; gap: 20px;
+  }
+  .nav-links.open { display: flex; }
+  .hero-grid, .about-grid, .terminal-wrap, .contact-panel { grid-template-columns: 1fr; }
+  .hero { min-height: unset; }
+  .hero-grid { padding: 60px 0 30px; }
+  .hero h1 { letter-spacing: -2px; }
+  .space-scene { min-height: 360px; }
+  .planet { width: 220px; }
+  .orbit { width: 285px; height: 285px; }
+  .moon { right: 12px; width: 48px; height: 48px; }
+  .floating-code { left: 0; top: 20px; font-size: 9px; }
+  .section { padding: 68px 0; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .skill-card { padding: 16px; min-height: 180px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gallery-card { min-height: 160px; padding: 14px; }
+  .gallery-symbol { font-size: 35px; }
+  .hero-meta { gap: 15px; }
+}
+@media (max-width: 420px) {
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 38px; }
+  .hero-meta { flex-wrap: wrap; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+
+<body>
+<div id="stars" aria-hidden="true"></div>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#home">
+      <span class="brand-icon">✦</span> NAZWA ANANDA
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Tech Stack</a>
+      <a href="#learning">Learning Log</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-button" href="#terminal">◉ MISSION MODE</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="status"><span class="status-dot"></span> SPACE TECH JOURNAL · ONLINE</div>
+      <h1>Hello, I'm <span>Nazwa<br>Ananda.</span></h1>
+      <p class="hero-copy">
+        Teknologi bukan hanya tentang perangkat yang terhubung.
+        Ada sistem, konfigurasi, dan proses di balik setiap koneksi.
+        Di sinilah saya belajar memahami semuanya, satu langkah demi satu langkah.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#about">Explore My Journey ↗</a>
+        <a class="btn btn-outline" href="#skills">Explore Tech Stack</a>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-item"><strong>XII TKJ A</strong><small>CLASS / 12</small></div>
+        <div class="meta-item"><strong>UKOM 25</strong><small>MISSION LOG</small></div>
+        <div class="meta-item"><strong>TECH</strong><small>LEARNING MODE</small></div>
+      </div>
+    </div>
+
+    <div class="space-scene reveal" aria-label="Ilustrasi planet luar angkasa">
+      <div class="orbit"></div>
+      <div class="planet"></div>
+      <div class="moon"></div>
+      <div class="floating-code">
+        SYSTEM STATUS: OK<br>
+        NETWORK: CONNECTED<br>
+        MISSION: LEARNING
+      </div>
+      <div class="scene-label">
+        <strong>✦ BEYOND THE LIMITS</strong>
+        Small steps. Bigger discoveries.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="reveal">
+      <div class="section-head">
+        <div class="eyebrow">01 / About the explorer</div>
+        <h2 class="section-title">A little about <span>me.</span></h2>
+      </div>
+      <p class="about-copy">
+        Saya Nazwa Ananda, siswa kelas XII TKJ A yang sedang belajar
+        dan mengeksplorasi dunia teknologi, khususnya di bidang Teknik
+        Komputer dan Jaringan. Saya tertarik pada jaringan, server,
+        keamanan data, serta hal-hal yang berkaitan dengan sistem komputer.
+        <br><br>
+        Website ini menjadi ruang untuk mencatat proses belajar, mencoba
+        hal baru, dan menyimpan perjalanan menuju kompetensi yang lebih baik.
+      </p>
+    </div>
+    <div class="profile-card reveal">
+      <div class="profile-top">
+        <div class="avatar">🚀</div>
+        <div>
+          <h3>Nazwa Ananda</h3>
+          <p>Student · TKJ Explorer</p>
+        </div>
+      </div>
+      <div class="profile-list">
+        <div><span>◈</span> Program: Teknik Komputer dan Jaringan</div>
+        <div><span>◈</span> Kelas: XII TKJ A</div>
+        <div><span>◈</span> Fokus: Network, Hardware & Server</div>
+        <div><span>◈</span> Status: Preparing for UKOM 25</div>
+      </div>
+      <div class="line" style="margin:22px 0 16px"></div>
+      <p style="color:var(--green);font-size:11px">“Small steps make big progress.”</p>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">02 / Mission equipment</div>
+      <h2 class="section-title">My tech <span>universe.</span></h2>
+      <p class="section-desc">Beberapa bidang yang dipelajari di TKJ. Setiap bagian adalah kesempatan untuk mencoba, memahami, dan berkembang.</p>
+    </div>
+    <div class="skills-grid">
+      <article class="skill-card reveal">
+        <div class="skill-icon">⌘</div>
+        <h3>Networking</h3>
+        <p>Konfigurasi jaringan, routing, switching, IP address, dan VLAN.</p>
+        <span class="tag">01 / CONNECTIONS</span>
+      </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">▣</div>
+        <h3>Hardware</h3>
+        <p>Komponen PC, perakitan, perangkat jaringan, dan perawatan dasar.</p>
+        <span class="tag">02 / COMPONENTS</span>
+      </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">▤</div>
+        <h3>Server & OS</h3>
+        <p>Pengenalan Windows Server, Linux, layanan server, dan virtualisasi.</p>
+        <span class="tag">03 / INFRASTRUCTURE</span>
+      </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">⬡</div>
+        <h3>Cyber Security</h3>
+        <p>Dasar keamanan akun, firewall, password yang kuat, dan proteksi jaringan.</p>
+        <span class="tag">04 / PROTECTION</span>
+      </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">⌁</div>
+        <h3>Troubleshooting</h3>
+        <p>Menganalisis masalah koneksi, mengecek konfigurasi, dan mencari solusi.</p>
+        <span class="tag">05 / DIAGNOSTICS</span>
+      </article>
+      <article class="skill-card reveal">
+        <div class="skill-icon">◉</div>
+        <h3>Cloud & Systems</h3>
+        <p>Mengenal penyimpanan cloud, layanan digital, dan hubungan antarsistem.</p>
+        <span class="tag">06 / EXPLORATION</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section class="section" id="learning">
+  <div class="container about-grid">
+    <div class="reveal">
+      <div class="section-head">
+        <div class="eyebrow">03 / Flight recorder</div>
+        <h2 class="section-title">Learning <span>log.</span></h2>
+        <p class="section-desc">Perjalanan belajar bukan cuma soal hasil akhir. Proses, percobaan, dan evaluasi juga bagian penting dari misi.</p>
+      </div>
+      <div class="actions">
+        <a href="#terminal" class="btn btn-outline">Visit Terminal ↗</a>
+      </div>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <small>PHASE 01 · FUNDAMENTALS</small>
+        <h3>Mengenal TKJ</h3>
+        <p>Memahami komponen komputer, dasar jaringan, dan perangkat yang digunakan.</p>
+      </div>
+      <div class="timeline-item">
+        <small>PHASE 02 · CONFIGURATION</small>
+        <h3>Konfigurasi</h3>
+        <p>Berlatih IP address, subnetting, DHCP, DNS, dan routing dasar.</p>
+      </div>
+      <div class="timeline-item">
+        <small>PHASE 03 · IMPLEMENTATION</small>
+        <h3>Praktik & Implementasi</h3>
+        <p>Menguji konfigurasi di lab, mengamati hasil, dan memperbaiki kesalahan.</p>
+      </div>
+      <div class="timeline-item">
+        <small>PHASE 04 · EVALUATION</small>
+        <h3>Persiapan UKOM</h3>
+        <p>Mengulang materi, menyusun langkah kerja, dan melatih troubleshooting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section class="section" id="terminal">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">04 / Mission control</div>
+      <h2 class="section-title">Terminal <span>area.</span></h2>
+      <p class="section-desc">Terminal mini interaktif untuk mencoba beberapa perintah demo. Bukan terminal sistem sungguhan.</p>
+    </div>
+    <div class="terminal-wrap">
+      <div class="terminal reveal">
+        <div class="terminal-bar"><i></i><i></i><i></i><span>nazwa@space-tech: ~</span></div>
+        <div class="terminal-body" id="terminalOutput" aria-live="polite">
+          <div class="green">SPACE TECH TERMINAL v1.0</div>
+          <div>Demo environment ready.</div>
+          <div>Type <span class="purple">help</span> to see available commands.</div>
+          <br>
+          <div class="green">nazwa@tkj:~$ welcome</div>
+          <div>Welcome aboard, explorer. 🚀</div>
+        </div>
+        <form class="terminal-input" id="terminalForm">
+          <input id="terminalInput" autocomplete="off" placeholder="Ketik: help" aria-label="Perintah terminal">
+          <button type="submit">Run ↗</button>
+        </form>
+      </div>
+      <div class="terminal-note reveal">
+        <h3>Ready for next mission?</h3>
+        <p>Coba perintah di bawah untuk melihat informasi sederhana. Semua output disimulasikan secara lokal dan tidak menjalankan perintah sistem.</p>
+        <div class="command-list">
+          <button type="button" data-cmd="help">help</button>
+          <button type="button" data-cmd="about">about</button>
+          <button type="button" data-cmd="skills">skills</button>
+          <button type="button" data-cmd="ping">ping</button>
+          <button type="button" data-cmd="clear">clear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">05 / Visual archive</div>
+      <h2 class="section-title">Gallery & <span>hobby.</span></h2>
+      <p class="section-desc">Kumpulan tema visual yang menggambarkan teknologi, eksperimen, dan ketertarikan pada luar angkasa.</p>
+    </div>
+    <div class="gallery-grid">
+      <article class="gallery-card reveal">
+        <div class="gallery-symbol">🪐</div>
+        <div><h3>Space & Planets</h3><p>Somewhere in the galaxy</p></div>
+      </article>
+      <article class="gallery-card reveal">
+        <div class="gallery-symbol">⌘</div>
+        <div><h3>Network Lab</h3><p>Connection in progress</p></div>
+      </article>
+      <article class="gallery-card reveal">
+        <div class="gallery-symbol">🚀</div>
+        <div><h3>Space Ranger</h3><p>Inspired by exploration</p></div>
+      </article>
+      <article class="gallery-card reveal">
+        <div class="gallery-symbol">▣</div>
+        <div><h3>Hardware Setup</h3><p>Tools of the mission</p></div>
+      </article>
+      <article class="gallery-card reveal">
+        <div class="gallery-symbol">⌁</div>
+        <div><h3>Digital Systems</h3><p>Behind every connection</p></div>
+      </article>
+      <article class="gallery-card reveal">
+        <div class="gallery-symbol">✦</div>
+        <div><h3>Beyond Limits</h3><p>To infinity and beyond</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-panel reveal">
+      <div>
+        <div class="eyebrow">06 / Open communication</div>
+        <h2>Let's connect<br><span style="color:var(--purple)">across the galaxy.</span></h2>
+        <p>Terima kasih sudah mampir. Semoga perjalanan belajar kita selalu punya hal baru untuk ditemukan.</p>
+        <p style="margin-top:18px;color:var(--green)">— Nazwa Ananda</p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:emailkamu@example.com">✉ Email <span>Ganti dengan alamat email kamu</span></a>
+        <a class="contact-link" href="#home">✦ Back to base <span>Kembali ke halaman utama</span></a>
+        <a class="contact-link" href="#learning">◈ Learning log <span>Lihat perjalanan belajar</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <strong>NAZWA ANANDA · SPACE TECH</strong>
+    <span>XII TKJ A &nbsp; / &nbsp; UKOM 25</span>
+    <span>Made with curiosity ✦ © <span id="year"></span></span>
+  </div>
+</footer>
+
+<script>
+// Generate decorative stars
+const starField = document.getElementById('stars');
+for (let i = 0; i < 110; i++) {
+  const star = document.createElement('span');
+  star.className = 'star';
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 100 + '%';
+  star.style.animationDelay = Math.random() * 4 + 's';
+  star.style.animationDuration = (2 + Math.random() * 4) + 's';
+  star.style.opacity = Math.random();
+  starField.appendChild(star);
+}
+
+// Mobile navigation
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// Reveal sections as they enter the viewport
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Safe simulated terminal — never executes operating system commands
+const output = document.getElementById('terminalOutput');
+const input = document.getElementById('terminalInput');
+
+const commands = {
+  help: 'Available commands: help, about, skills, ping, clear, date',
+  about: 'Name: Nazwa Ananda | Class: XII TKJ A | Mission: UKOM 25',
+  skills: 'Topics: Networking, Hardware, Server, Cyber Security, Troubleshooting, Cloud',
+  ping: 'PING 192.168.1.1 (demo): 4 packets transmitted, 4 received, 0% packet loss. [SIMULATED]',
+  date: () => 'Local page date: ' + new Date().toLocaleDateString('id-ID'),
+  welcome: 'Welcome aboard, explorer. 🚀'
+};
+
+function runCommand(raw) {
+  const cmd = raw.trim().toLowerCase();
+  if (!cmd) return;
+
+  if (cmd === 'clear') {
+    output.innerHTML = '';
+    return;
+  }
+
+  const result = commands[cmd];
+  const text = typeof result === 'function' ? result() : (result || `Command not found: ${cmd}. Type "help".`);
+
+  const prompt = document.createElement('div');
+  prompt.className = 'green';
+  prompt.textContent = 'nazwa@tkj:~$ ' + cmd;
+
+  const response = document.createElement('div');
+  response.style.marginBottom = '12px';
+  response.textContent = text;
+
+  output.append(prompt, response);
+  output.scrollTop = output.scrollHeight;
+}
+
+document.getElementById('terminalForm').addEventListener('submit', event => {
+  event.preventDefault();
+  runCommand(input.value);
+  input.value = '';
+});
+
+document.querySelectorAll('[data-cmd]').forEach(button => {
+  button.addEventListener('click', () => {
+    runCommand(button.dataset.cmd);
+  });
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
